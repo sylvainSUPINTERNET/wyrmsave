@@ -26,10 +26,10 @@ namespace wyrmsave
             Configuration = configuration;
 
             var ctx = new WyrmSaveContext();
-            var stud = new Profil() { ProfilSchemaName = "test1" };
-            ctx.Profil.Add(stud);
+            for (int i =0; i <= 11; i++ ) {
+                ctx.Profil.Add(new Profil() { ProfilSchemaName = $"TEST {i}" });
+            }
             ctx.SaveChanges(); 
-            
         }
 
         public IConfiguration Configuration { get; }
@@ -37,7 +37,6 @@ namespace wyrmsave
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -64,7 +63,7 @@ namespace wyrmsave
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers(); 
             });
         }
     }
